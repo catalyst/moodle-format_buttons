@@ -15,18 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * format_buttons_renderer
+ * format_buttons privacy provider
  *
  * @package    format_buttons
- * @author     Rodrigo Brandão <https://www.linkedin.com/in/brandaorodrigo>
- * @copyright  2019 Rodrigo Brandão <brandrod@gmail.com>
+ * @author     Peter Burnett <peterburnett@catalyst-au.net>
+ * @copyright  2019 Catalyst IT <https://www.catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+ 
+namespace format_buttons\privacy;
+ 
+class provider implements
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
 
-defined('MOODLE_INTERNAL') || die();
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
 
-$plugin->requires = 2015111600; /* moodle 3.0 */
-$plugin->component = 'format_buttons';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '(Build: 2019120200)';
-$plugin->version = 2019120200;

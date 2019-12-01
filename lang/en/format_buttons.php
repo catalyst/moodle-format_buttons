@@ -72,3 +72,5 @@ $string['circle'] = 'Circle';
 $string['square'] = 'Square';
 $string['inlinesections'] = 'Inline sections';
 $string['inlinesections_help'] = 'Give each section a new line.';
+
+$string['privacy:metadata'] = 'The Buttons format does not store user data for any reason.';
