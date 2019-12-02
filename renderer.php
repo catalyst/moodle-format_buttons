@@ -45,8 +45,7 @@ class format_buttons_renderer extends format_topics_renderer
      * @param string $name
      * @return string
      */
-    protected function get_color_config($course, $name)
-    {
+    protected function get_color_config($course, $name) {
         $return = false;
         if (isset($course->{$name})) {
             $color = str_replace('#', '', $course->{$name});
@@ -64,8 +63,7 @@ class format_buttons_renderer extends format_topics_renderer
      * @param integer $number
      * @return string
      */
-    protected function number_to_roman($number)
-    {
+    protected function number_to_roman($number) {
         $number = intval($number);
         $return = '';
         $romanarray = [
@@ -97,8 +95,7 @@ class format_buttons_renderer extends format_topics_renderer
      * @param integer $number
      * @return string
      */
-    protected function number_to_alphabet($number)
-    {
+    protected function number_to_alphabet($number) {
         $number = $number - 1;
         $alphabet = range("A", "Z");
         if ($number <= 25) {
@@ -122,21 +119,18 @@ class format_buttons_renderer extends format_topics_renderer
      * @param string $sectionvisible
      * @return string
      */
-    protected function get_button_section($course, $sectionvisible)
-    {
+    protected function get_button_section($course, $sectionvisible) {
         global $PAGE;
         $html = '';
         $css = '';
         if ($colorcurrent = $this->get_color_config($course, 'colorcurrent')) {
-            $css .=
-            '#buttonsectioncontainer .buttonsection.current {
+            $css .= '#buttonsectioncontainer .buttonsection.current {
                 background: ' . $colorcurrent . ';
             }
             ';
         }
         if ($colorvisible = $this->get_color_config($course, 'colorvisible')) {
-            $css .=
-            '#buttonsectioncontainer .buttonsection.sectionvisible {
+            $css .= '#buttonsectioncontainer .buttonsection.sectionvisible {
                 background: ' . $colorvisible . ';
             }
             ';
@@ -235,8 +229,7 @@ class format_buttons_renderer extends format_topics_renderer
      *
      * @return string
      */
-    protected function start_section_list()
-    {
+    protected function start_section_list() {
         return html_writer::start_tag('ul', ['class' => 'buttons']);
     }
 
@@ -249,8 +242,7 @@ class format_buttons_renderer extends format_topics_renderer
      * @param int $sectionreturn
      * @return string
      */
-    protected function section_header($section, $course, $onsectionpage, $sectionreturn=null)
-    {
+    protected function section_header($section, $course, $onsectionpage, $sectionreturn=null) {
         global $PAGE;
 
         $o = '';
@@ -267,19 +259,19 @@ class format_buttons_renderer extends format_topics_renderer
             }
         }
 
-        $o.= html_writer::start_tag('li', array('id' => 'section-'.$section->section,
-             'class' => 'section main clearfix'.$sectionstyle, 'role'=>'region',
-             'aria-label'=> get_section_name($course, $section)));
+        $o .= html_writer::start_tag('li', array('id' => 'section-'.$section->section,
+             'class' => 'section main clearfix'.$sectionstyle, 'role' => 'region',
+             'aria-label' => get_section_name($course, $section)));
 
         // Create a span that contains the section title to be used to create the keyboard section move menu.
         $o .= html_writer::tag('span', get_section_name($course, $section), array('class' => 'hidden sectionname'));
 
         $leftcontent = $this->section_left_content($section, $course, $onsectionpage);
-        $o.= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
+        $o .= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
 
         $rightcontent = $this->section_right_content($section, $course, $onsectionpage);
-        $o.= html_writer::tag('div', $rightcontent, array('class' => 'right side'));
-        $o.= html_writer::start_tag('div', array('class' => 'content'));
+        $o .= html_writer::tag('div', $rightcontent, array('class' => 'right side'));
+        $o .= html_writer::start_tag('div', array('class' => 'content'));
 
         // When not on a section page, we display the section titles except the general section if null
         $hasnamenotsecpg = (!$onsectionpage && ($section->section != 0 || !is_null($section->name)));
@@ -295,7 +287,7 @@ class format_buttons_renderer extends format_topics_renderer
 
         // button format - ini
         if ($course->showdefaultsectionname) {
-            $o.= $this->output->heading($sectionname, 3, 'sectionname' . $classes);
+            $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes);
         }
         // button format - end
 
@@ -322,8 +314,7 @@ class format_buttons_renderer extends format_topics_renderer
      * @param array $modnames (argument not used)
      * @param array $modnamesused (argument not used)
      */
-    public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused)
-    {
+    public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
         global $PAGE;
 
         $modinfo = get_fast_modinfo($course);

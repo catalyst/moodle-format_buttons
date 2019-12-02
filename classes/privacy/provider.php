@@ -22,9 +22,9 @@
  * @copyright  2019 Catalyst IT <https://www.catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
+
 namespace format_buttons\privacy;
- 
+
 class provider implements
     // This plugin does not store any personal user data.
     \core_privacy\local\metadata\null_provider {

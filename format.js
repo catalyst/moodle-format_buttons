@@ -77,11 +77,11 @@ M.course.format.swap_sections = function(Y, node1, node2) {
  */
 M.course.format.process_sections = function(Y, sectionlist, response, sectionfrom, sectionto) {
     var CSS = {
-            SECTIONNAME: 'sectionname'
-        },
-        SELECTORS = {
-            SECTIONLEFTSIDE: '.left .section-handle .icon'
-        };
+        SECTIONNAME: 'sectionname'
+    },
+    SELECTORS = {
+        SECTIONLEFTSIDE: '.left .section-handle .icon'
+    };
 
     if (response.action == 'move') {
         // If moving up swap around 'sectionfrom' and 'sectionto' so the that loop operates.
