@@ -19,7 +19,7 @@
  *
  * @package    format_buttons
  * @author     Rodrigo Brandão <https://www.linkedin.com/in/brandaorodrigo>
- * @copyright  2019 Rodrigo Brandão <brandrod@gmail.com>
+ * @copyright  2020 Rodrigo Brandão <rodrigo.brandao.contato@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -28,18 +28,18 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/topics/renderer.php');
 
 /**
- * format_buttons_renderer
+ * Format_buttons_renderer
  *
  * @package    format_buttons
  * @author     Rodrigo Brandão <https://www.linkedin.com/in/brandaorodrigo>
- * @copyright  2019 Rodrigo Brandão <brandrod@gmail.com>
+ * @copyright  2020 Rodrigo Brandão <rodrigo.brandao.contato@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class format_buttons_renderer extends format_topics_renderer
 {
 
     /**
-     * get_button_section
+     * Get_button_section
      *
      * @param stdclass $course
      * @param string $name
@@ -58,7 +58,7 @@ class format_buttons_renderer extends format_topics_renderer
     }
 
     /**
-     * number_to_roman
+     * Number_to_roman
      *
      * @param integer $number
      * @return string
@@ -90,7 +90,7 @@ class format_buttons_renderer extends format_topics_renderer
     }
 
     /**
-     * number_to_alphabet
+     * Number_to_alphabet
      *
      * @param integer $number
      * @return string
@@ -113,7 +113,7 @@ class format_buttons_renderer extends format_topics_renderer
     }
 
     /**
-     * get_button_section
+     * Get_button_section
      *
      * @param stdclass $course
      * @param string $sectionvisible
@@ -124,13 +124,15 @@ class format_buttons_renderer extends format_topics_renderer
         $html = '';
         $css = '';
         if ($colorcurrent = $this->get_color_config($course, 'colorcurrent')) {
-            $css .= '#buttonsectioncontainer .buttonsection.current {
+            $css .=
+            '#buttonsectioncontainer .buttonsection.current {
                 background: ' . $colorcurrent . ';
             }
             ';
         }
         if ($colorvisible = $this->get_color_config($course, 'colorvisible')) {
-            $css .= '#buttonsectioncontainer .buttonsection.sectionvisible {
+            $css .=
+            '#buttonsectioncontainer .buttonsection.sectionvisible {
                 background: ' . $colorvisible . ';
             }
             ';
@@ -225,7 +227,7 @@ class format_buttons_renderer extends format_topics_renderer
     }
 
     /**
-     * start_section_list
+     * Start_section_list
      *
      * @return string
      */
@@ -234,7 +236,7 @@ class format_buttons_renderer extends format_topics_renderer
     }
 
     /**
-     * section_header
+     * Section_header
      *
      * @param stdclass $section
      * @param stdclass $course
@@ -242,7 +244,7 @@ class format_buttons_renderer extends format_topics_renderer
      * @param int $sectionreturn
      * @return string
      */
-    protected function section_header($section, $course, $onsectionpage, $sectionreturn=null) {
+    protected function section_header($section, $course, $onsectionpage, $sectionreturn = null) {
         global $PAGE;
 
         $o = '';
@@ -259,19 +261,19 @@ class format_buttons_renderer extends format_topics_renderer
             }
         }
 
-        $o .= html_writer::start_tag('li', array('id' => 'section-'.$section->section,
-             'class' => 'section main clearfix'.$sectionstyle, 'role' => 'region',
-             'aria-label' => get_section_name($course, $section)));
+        $o.= html_writer::start_tag('li', array('id' => 'section-'.$section->section,
+             'class' => 'section main clearfix'.$sectionstyle, 'role'=>'region',
+             'aria-label'=> get_section_name($course, $section)));
 
         // Create a span that contains the section title to be used to create the keyboard section move menu.
         $o .= html_writer::tag('span', get_section_name($course, $section), array('class' => 'hidden sectionname'));
 
         $leftcontent = $this->section_left_content($section, $course, $onsectionpage);
-        $o .= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
+        $o.= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
 
         $rightcontent = $this->section_right_content($section, $course, $onsectionpage);
-        $o .= html_writer::tag('div', $rightcontent, array('class' => 'right side'));
-        $o .= html_writer::start_tag('div', array('class' => 'content'));
+        $o.= html_writer::tag('div', $rightcontent, array('class' => 'right side'));
+        $o.= html_writer::start_tag('div', array('class' => 'content'));
 
         // When not on a section page, we display the section titles except the general section if null
         $hasnamenotsecpg = (!$onsectionpage && ($section->section != 0 || !is_null($section->name)));
@@ -285,11 +287,11 @@ class format_buttons_renderer extends format_topics_renderer
         }
         $sectionname = html_writer::tag('span', $this->section_title($section, $course));
 
-        // button format - ini
+        // Button format - ini
         if ($course->showdefaultsectionname) {
-            $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes);
+            $o.= $this->output->heading($sectionname, 3, 'sectionname' . $classes);
         }
-        // button format - end
+        // Button format - end
 
         $o .= $this->section_availability($section);
 
@@ -306,7 +308,7 @@ class format_buttons_renderer extends format_topics_renderer
     }
 
     /**
-     * print_multiple_section_page
+     * Print_multiple_section_page
      *
      * @param stdclass $course
      * @param array $sections (argument not used)
@@ -342,7 +344,7 @@ class format_buttons_renderer extends format_topics_renderer
             if ($section > $course->numsections) {
                 continue;
             }
-            /* if is not editing verify the rules to display the sections */
+            /* If is not editing verify the rules to display the sections */
             if (!$PAGE->user_is_editing()) {
                 if ($course->hiddensections && !(int)$thissection->visible) {
                     continue;
@@ -417,6 +419,6 @@ class format_buttons_renderer extends format_topics_renderer
         if (!$PAGE->user_is_editing()) {
             $PAGE->requires->js_init_call('M.format_buttons.init', [$course->numsections, $sectionvisible, $course->id]);
         }
-        // button format - end
+        // Button format - end
     }
 }
