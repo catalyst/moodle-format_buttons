@@ -182,6 +182,7 @@ class content extends content_base
             'sections' => $sections,
             'all_sections' => $array_sections,
             'format' => $format->get_format(),
+            'sectionreturn' => 'null',
             'sectionclasses' => '',
             'bgcolor' => $course->bgcolor,
             'colorfont' => $course->colorfont,
